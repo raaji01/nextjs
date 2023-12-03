@@ -19,6 +19,7 @@ interface WeatherState {
   timezone: string;
   error: string;
   searchLocation?: string;
+  jsonData: any;
   
 }
 
@@ -36,6 +37,7 @@ class Weather extends Component<{}, WeatherState> {
       timezone: '',
       error: '',
       searchLocation: '',
+      jsonData: null,
       
     };
   }
@@ -106,11 +108,28 @@ class Weather extends Component<{}, WeatherState> {
   handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchLocation: e.target.value });
   };
+  fetchWeatherData = () => {
+    // Assume that weatherData.json is in the public folder
+    axios.get('/weatherData.json').then((response) => {
+      this.setState({
+        jsonData: response.data,
+        error: '', // Clear any previous errors
+      });
+    }).catch((error) => {
+      this.displayError('Error fetching weather data.');
+    });
+  };
+
+  navigateToSSR1Page = () => {
+    // Redirect to the SSR page
+    window.location.href = '/ssr1';
+  };
  
   render() {
     return (
       <div id='con'>
-        <h3 className="text-3xl font-bold underline"> Check the weather</h3>
+        <h2 className="text-3xl font-bold underline"> Check the weather</h2>
+        <h3>Third party real time Api</h3>
         <div>
           <input
             type="text"
@@ -145,7 +164,33 @@ class Weather extends Component<{}, WeatherState> {
           </p>
           {this.state.error && <p className="error">{this.state.error}</p>}
         </div>
+
+        <button onClick={this.fetchWeatherData} className="text-sky-500 hover:text-sky-600">
+          Fetch Weather Data from local json file
+        </button>
+        <br/>
+        {this.state.jsonData && (
+          <div>
+            <h3>Weather Information from local json file</h3>
+            <p><strong>City:</strong> {this.state.jsonData.city}</p>
+            <p><strong>Temperature:</strong> {this.state.jsonData.temperature}</p>
+            <p><strong>Humidity:</strong> {this.state.jsonData.humidity}</p>
+            <p><strong>Wind Speed:</strong> {this.state.jsonData.windSpeed}</p>
+            <p><strong>Conditions:</strong> {this.state.jsonData.conditions}</p>
+            <h4>5-Day Forecast</h4>
+            <ul>
+              {this.state.jsonData.forecast.map((day: any) => (
+                <li key={day.day}>
+                  <strong>{day.day}:</strong> {day.temperature}, {day.conditions}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         
+        <button onClick={this.navigateToSSR1Page} className="text-sky-500 hover:text-sky-600">
+          Go to see server(Json Placeholder) and client side rendering
+        </button>
       </div>
     );
   }

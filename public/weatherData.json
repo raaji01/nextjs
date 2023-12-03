@@ -1,0 +1,13 @@
+{
+    "city": "Sample City",
+    "temperature": "25°C",
+    "humidity": "60%",
+    "windSpeed": "10 km/h",
+    "conditions": "Partly Cloudy",
+    "forecast": [
+      { "day": "Monday", "temperature": "24°C", "conditions": "Sunny" },
+      { "day": "Tuesday", "temperature": "22°C", "conditions": "Cloudy" },
+      { "day": "Wednesday", "temperature": "26°C", "conditions": "Clear" }
+    ]
+  }
+  

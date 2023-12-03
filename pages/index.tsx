@@ -13,10 +13,11 @@ class Index extends Component<IndexProps, IndexState> {
       <body>
         <div className={styles.App}>
           <header className={styles.AppHeader}>
-            <p className={styles.p}>React weather</p>
+            <p className={styles.p}>Next React weather</p>
             {/* Link to the weather page */}
             <Link href="/weather">
-              <a className="App-link">Check your weather</a>
+            <a className="App-link">Click here to check your location sunset and sunrise</a>
+
             </Link>
           </header>
         </div>
