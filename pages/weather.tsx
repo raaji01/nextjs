@@ -124,6 +124,10 @@ class Weather extends Component<{}, WeatherState> {
     // Redirect to the SSR page
     window.location.href = '/ssr1';
   };
+  navigateToSSRPage = () => {
+    // Redirect to the SSR page
+    window.location.href = '/ssr';
+  };
  
   render() {
     return (
@@ -190,6 +194,9 @@ class Weather extends Component<{}, WeatherState> {
         
         <button onClick={this.navigateToSSR1Page} className="text-sky-500 hover:text-sky-600">
           Go to see server(Json Placeholder) and client side rendering
+        </button>
+        <button onClick={this.navigateToSSRPage} className="text-sky-500 hover:text-sky-600">
+          Go to see Json Placeholder todo list
         </button>
       </div>
     );
