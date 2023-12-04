@@ -195,6 +195,7 @@ class Weather extends Component<{}, WeatherState> {
         <button onClick={this.navigateToSSR1Page} className="text-sky-500 hover:text-sky-600">
           Go to see server(Json Placeholder) and client side rendering
         </button>
+        <br/>
         <button onClick={this.navigateToSSRPage} className="text-sky-500 hover:text-sky-600">
           Go to see Json Placeholder todo list
         </button>
